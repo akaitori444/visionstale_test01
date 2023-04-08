@@ -1,0 +1,424 @@
+@charset "utf-8";
+
+body{
+    background: url("../asset/gif/noise.gif");
+	font-family: "Roboto", "Yu Gothic Medium", "游ゴシック Medium", "YuGothic", "游ゴシック体", "ヒラギノ角ゴ Pro W3", "メイリオ", sans-serif;
+	line-height: 1.75;
+	font-size: 16px; 
+	text-align: center;
+}
+
+/*　パディングをサイズ内側にする処理　*/
+/** {
+	padding:0;
+	margin:0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+}*/
+textarea {
+  resize: none;
+  width:600px;
+  height:100px;
+}
+img{
+    pointer-events: none;
+}
+
+/*-----------------*/
+section{
+    border: 4px double #110000;
+    text-align: center;
+    color: #110000;
+}
+
+h1{
+    margin: 0%;
+    border-bottom: 1px solid #110000;
+    font-weight: normal;
+    font-size: 22px;
+    padding: 2px 1px;
+}
+
+label {
+    font-size: 1rem;
+}
+
+/*----------------- 画像表示パターン -----------------*/
+.disp-center{
+    background-repeat:  no-repeat;                         /* 画像の繰り返しを指定  */              
+    background-position: center center;                    /* 画像の横・縦の位置を指定*/
+    width:10pX;                                            /* 横幅のサイズを指定    */
+    height:10pX;                                           /* 縦幅のサイズを指定    */
+}
+
+.backcollar_black{
+    background-color: #110000;                         /* 画像の繰り返しを指定  */              
+}
+
+.back_inventory{
+  background-image: url(../asset/img/inventory.png);
+	height: 120px;
+	width: 120px;
+}
+/*----------------- menu -----------------*/
+.menu{
+	justify-content: space-evenly;
+	border: 0.2px solid;
+	height: 100px;
+	width: 100%; /* 幅いっぱいを指定 */
+  background: #efefef; /* 背景色にグレーを指定 */
+  padding: 20px 50px; /* ヘッダーに上下左右それぞれ余白を指定 */
+  box-sizing: border-box; /* padding分を含んで幅を100%にするため */
+  position: fixed; /* ウィンドウを基準に画面に固定 */
+  top: 0; /* 上下の固定位置を上から0pxにする */
+  left: 0; /* 左右の固定位置を左から0pxにする */
+  display: flex; /* 中の要素を横並びにする */
+  align-items: center; /* 中の要素を上下中央に並べる */
+}
+/*----------------- pl_data -----------------*/
+.pl_data{
+  width: 40%; /* 幅いっぱいを指定 */
+  font-size: 9px;
+  position: fixed; /* ウィンドウを基準に画面に固定 */
+  top: 60em; /* 上下の固定位置を上から0pxにする */
+  left: -20em; /* 左右の固定位置を左から0pxにする */  
+}
+.vt_all_data{
+  width: 40%; /* 幅いっぱいを指定 */
+  font-size: 9px;
+  position: fixed; /* ウィンドウを基準に画面に固定 */
+  top: 12em; /* 上下の固定位置を上から0pxにする */
+  right: -15em; /* 左右の固定位置を左から0pxにする */  
+}
+/*----------------- message -----------------*/
+.message{
+  height: 100px;
+  width: 40%; /* 幅いっぱいを指定 */
+  position: fixed; /* ウィンドウを基準に画面に固定 */
+  top: 6em; /* 上下の固定位置を上から0pxにする */
+  left: -11em; /* 左右の固定位置を左から0pxにする */  
+}
+/*----------------- search -----------------*/
+.search_frame{
+  margin: 2em auto;
+  padding: 1em;
+  width: 20%;
+  position: fixed; /* ウィンドウを基準に画面に固定 */
+  top: 20em; /* 上下の固定位置を上から0pxにする */
+  right: 3em; /* 左右の固定位置を左から0pxにする */ 
+  border: 1px solid #ccc; /* 枠線 */
+  background-color: #fff; /* 背景色 */
+  box-shadow: 1px 1px 2px #ccc;
+}
+/*----------------- padding -----------------*/
+.padding_short{
+  padding: 10px; /* ヘッダーに上下左右それぞれ余白を指定 */
+}
+.padding_5{
+  padding: 5px; /* ヘッダーに上下左右それぞれ余白を指定 */
+}
+.padding_50{
+  padding: 50px; /* ヘッダーに上下左右それぞれ余白を指定 */
+}
+.big_font{
+  font-size: 26px;
+}
+/*----------------- box29 -----------------*/
+.box29 {
+  font-size: 16px;
+  width: 50%;
+  margin: 2em 0;
+  background: #dcefff;
+}
+.box29 .box-title {
+  font-size: 1.2em;
+  background: #5fb3f5;
+  padding: 4px;
+  text-align: center;
+  color: #FFF;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+}
+.box29 p {
+  padding: 15px 20px;
+  margin: 0;
+}
+/*----------------- frame -----------------*/
+
+.white_frame{
+  margin: 2em auto;
+  padding: 1em;
+  width: 50%;
+  border: 1px solid #ccc; /* 枠線 */
+  background-color: #fff; /* 背景色 */
+  box-shadow: 1px 1px 2px #ccc;
+}
+
+/*-----------------------*/
+/*--縦揃え--*/
+.straight_line{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+/*--横揃え--*/
+.side_line{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.space-evenly {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.width_100{
+    width: 100px;
+}
+.margin_top{
+    margin-top: 20px;
+}
+
+/*---スライダーのためのcss---*/
+.slider img {
+    width:100%;/*スライダー内の画像を横幅100%に*/
+    height:auto;
+}
+/*slickのJSで書かれるタグ内、スライド左右の余白調整*/
+.slider .slick-slide {
+    margin:0 5px;/*スライド左右の余白調整*/
+}
+
+/*---ゲーム画面---*/
+.top{
+    width: 100%;
+    height: 100%;
+    background-color: aqua;
+}
+.title{
+    font-size: 36px;
+    display: flex;
+    justify-content: center;
+}
+
+.window{
+    display: flex;    
+}
+.pl_information{
+    width: 360px;
+    height: 950px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: aqua;
+}
+.pl_input{
+    width: 300px;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.status{
+    margin: 0%;
+    font-size: 8px;
+    padding: 0;
+}
+.msg_window{
+    width: 1200px;
+    height: 250px;
+    background-position:bottom;
+    background-color: yellow;
+}
+
+.battlefield{
+    width: 600px;
+    height: 600px;
+    background-color: yellow;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.npc_position{
+  position: absolute;
+  top: 10rem;
+  right: 25rem;
+}
+.pl_position{
+  position: absolute;
+  top: 10rem;
+  left: 25rem;
+}
+.example16{
+  margin: 2em;
+  background-position:center;
+  top: 5rem;
+}
+/*----------------- ボタン -----------------*/
+/*
+button{
+    all: unset;
+    width: 100%;
+    background: red;
+    border-radius: 8px;
+    color: white;
+    text-align: center;
+    margin-top: 16px;
+    cursor: pointer;
+    box-shadow: 0 4px #7a0000;
+}
+button:hover{
+    opacity: 0.8;
+}
+button:active{
+    box-shadow: 0 1px #7a0000;
+    transform:translateY(3px)
+}
+/*----------------- button -----------------*/
+@import 'https://fonts.googleapis.com/css?family=Anton';
+* {
+  box-sizing: border-box;
+}
+.skew-button {
+  cursor: pointer;
+  outline: none;
+  transform: translate3d(0, 0, 0) skew(-10deg);
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  position: relative;
+  display: inline-block;
+  padding: 0;
+  background-color: #c99090;
+  border: none;
+  font: 1.3rem "Anton", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #000000;
+}
+.skew-button span {
+  transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 20px 50px;
+  z-index: 3;
+}
+.skew-button:before,
+.skew-button span:before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) skewX(-20deg);
+  width: 100%;
+  height: 50px;
+  border: 1px solid #760e0e;
+  z-index: 2;
+}
+.skew-button span:before {
+  display: block;
+  transform: translate(-50%, -50%) skew(-20deg);
+  transform-origin: center center;
+  z-indeX: -1;
+}
+.skew-button:after {
+  transition: all 100ms ease-out;
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: skewX(-20deg) scaleX(0);
+  width: 100%;
+  height: 100%;
+  background-color: #760e0e;
+  border: 1px solid transparent;
+  z-index: 1;
+}
+.skew-button:hover span:before {
+  -webkit-animation: fill 0.5s ease-out;
+          animation: fill 0.5s ease-out;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.skew-button:hover:after {
+  -webkit-animation: swoosh 0.7s ease-in;
+          animation: swoosh 0.7s ease-in;
+}
+.skew-button:active:before {
+  background-color: #1b0303;
+}
+
+@-webkit-keyframes swoosh {
+  0% {
+    transform-origin: left center;
+  }
+  20% {
+    transform: skewX(-20deg) scaleX(1);
+    transform-origin: left center;
+  }
+  21% {
+    transform-origin: right center;
+  }
+  50% {
+    transform: skewX(-20deg) scaleX(0);
+    transform-origin: right center;
+  }
+}
+
+@keyframes swoosh {
+  0% {
+    transform-origin: left center;
+  }
+  20% {
+    transform: skewX(-20deg) scaleX(1);
+    transform-origin: left center;
+  }
+  21% {
+    transform-origin: right center;
+  }
+  50% {
+    transform: skewX(-20deg) scaleX(0);
+    transform-origin: right center;
+  }
+}
+@-webkit-keyframes fill {
+  0% {
+    background-color: rgba(118, 14, 14, 0);
+  }
+  20% {
+    opacity: 0.5;
+    border-width: 15px;
+    border-color: #480909;
+  }
+  100% {
+    opacity: 0.5;
+    border-width: 1px;
+    background-color: rgba(118, 14, 14, 0.5);
+  }
+}
+@keyframes fill {
+  0% {
+    background-color: rgba(118, 14, 14, 0);
+  }
+  20% {
+    opacity: 0.5;
+    border-width: 15px;
+    border-color: #480909;
+  }
+  100% {
+    opacity: 0.5;
+    border-width: 1px;
+    background-color: rgba(118, 14, 14, 0.5);
+  }
+}
