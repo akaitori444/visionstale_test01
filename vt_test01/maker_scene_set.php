@@ -74,14 +74,29 @@ if ($count > 0) {
   <link rel="stylesheet" type="text/css" href="css/style.css"/>
 </head>
 
-<body>
+<body class ="noise">
+<!---------------------------------------------------------------------------------------------------->
+<!-- loading画面 -->
+<div id="js-loader" class="loader"></div>
+<!---------------------------------------------------------------------------------------------------->
+<!-- 画面 -->
+<div class = "top_line">
+<!---------------------------------------------------------------------------------------------------->
+<!-- 画面左 -->
+<!-- メッセージ、PL情報 -->
+<div class="straight_line sidebar">
+<?php include('set_left.php');?>
+</div>
+<!---------------------------------------------------------------------------------------------------->
+<div class = "main-menu">
+<!-- メイン画面 -->
   <dvi>
     <div><!-- メニュー -->
       <div>
-        <button onclick="location.href='index.php'">メニューに戻る</button>
+        <button class="skew-button" onclick="location.href='index.php'">メニューに戻る</button>
       </div>
       <div>
-        <button onclick="location.href='maker_menu.php'">作成メニューに戻る</button>
+        <button class="skew-button" onclick="location.href='maker_menu.php'">作成メニューに戻る</button>
       </div>
     </div>
       <h1>シナリオ作成</h1>
@@ -161,7 +176,7 @@ if ($count > 0) {
                     <input type="hidden" name="scene_id" value="<?=$id?>">
                     <input type="hidden" name="scenario_id" value="<?=$scenario_id?>">
                     <input type="hidden" name="scene_set_connect" value="<?=$scene_set_connect?>">
-                    <td><button>追加する</button></td>
+                    <td><button class="skew-button">追加する</button></td>
                   </tr>
                   <?php endforeach; ?>
                 </tbody>
@@ -172,11 +187,26 @@ if ($count > 0) {
       </div>
         <div class='straight_line'><!-- 作成 -->
               <div>
-                <button onclick="location.href='maker_menu.php'">完成させる</button>
+                <button class="skew-button" onclick="location.href='maker_menu.php'">完成させる</button>
               </div>
         </div>
-  </dvi>
-<?php include('set.php');?>
+        </div>
+        </div>
+<!---------------------------------------------------------------------------------------------------->
+<!-- 画面右 -->
+<!-- ゲーム内情報、検索機構 -->
+<div class="straight_line sidebar">
+<?php include('set_right.php');?>
+<?php
+//検索システムの適用ページ
+$list_character = 'list_character.php';?>
+<?php include('search.php');?>
+</div>
+
+</div>
+<!---------------------------------------------------------------------------------------------------->
+<!-- top -->
+<?php include('set_top.php');?>
 </body>
 
 </html>

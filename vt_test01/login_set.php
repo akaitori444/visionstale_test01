@@ -11,7 +11,6 @@ $pdo = connect_vt_db();
 if(isset($_SESSION['is_admin'])){$user_admin = $_SESSION['is_admin'];}
 if(isset($_SESSION['username'])){$user_name = $_SESSION['username'];}
 if(isset($_SESSION['id'])){$user_id = $_SESSION['id'];}
-
 //pickup
 if(isset($_SESSION["pickup_character_id"])){$pickup_character = $_SESSION["pickup_character_id"];}
 if(isset($_SESSION["pickup_scenario_id"])){$pickup_scenario = $_SESSION["pickup_scenario_id"];}
@@ -23,6 +22,31 @@ if(isset($_SESSION['play_character'])){$play_character= $_SESSION['play_characte
 if(isset($_SESSION['play_character_date'])){$play_character_date = $_SESSION['play_character_date'];}
 if(isset($_SESSION['play_scenario_date'])){$play_scenario_date = $_SESSION['play_scenario_date'];}
 /*---------------------------------------------------------------------------*/
+if(isset($_POST["user_only_command"])){
+  if($_POST["user_only_command"] == 1){
+      $user_only_set = "自作データのみ表示";
+      $user_only_set_button = "すべて表示";
+      $_SESSION["user_only"] = 1;
+      $user_only_command = 0;
+  }elseif($_POST["user_only_command"] == 0){
+      $user_only_set = "すべて表示";
+      $user_only_set_button = "自作データのみ表示";
+      $_SESSION["user_only"] = 0;
+      $user_only_command = 1;
+  }
+  }else{
+    if($_SESSION["user_only"] == 1){
+        $user_only_set = "自作データのみ表示";
+        $user_only_set_button = "すべて表示";
+        $_SESSION["user_only"] = 1;
+        $user_only_command = 0;
+    }elseif($_SESSION["user_only"] == 0){
+        $user_only_set = "すべて表示";
+        $user_only_set_button = "自作データのみ表示";
+        $_SESSION["user_only"] = 0;
+        $user_only_command = 1;
+  }
+  }
 /*-------------------------------------------------------------------------------*/
 // メッセージを作成
 /*-------------------------------------------------------------------------------*/

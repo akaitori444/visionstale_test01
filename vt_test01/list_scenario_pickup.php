@@ -83,13 +83,27 @@ exit();
   <link rel="stylesheet" type="text/css" href="css/style.css"/>
 </head>
 
-<body>
-<br>
+<body class ="noise">
+<!---------------------------------------------------------------------------------------------------->
+<!-- loading画面 -->
+<div id="js-loader" class="loader"></div>
+<!---------------------------------------------------------------------------------------------------->
+<!-- 画面 -->
+<div class = "top_line">
+<!---------------------------------------------------------------------------------------------------->
+<!-- 画面左 -->
+<!-- メッセージ、PL情報 -->
+<div class="straight_line sidebar">
+<?php include('set_left.php');?>
+</div>
+<!---------------------------------------------------------------------------------------------------->
+<div class = "main-menu">
+<!-- メイン画面 -->
 <br>
 <br>
 <div class="white_frame">
-  <button class="skew-button" onclick="location.href = 'list_scenario.php'"><span>シナリオを見る</span></button>
-  <button class="skew-button" onclick="location.href = 'index.php'"><span>メニューに戻る</span></button>
+  <button class="skew-button" onclick="location.href = 'list_scenario.php'">シナリオを見る</button>
+  <button class="skew-button" onclick="location.href = 'index.php'">メニューに戻る</button>
 </div>
 <div class="white_frame">
 <div class="straight_line">
@@ -101,7 +115,8 @@ exit();
         <img src="<?php echo $record["scenario_image"] ?>" alt="PL" width='240' height='135'>
         <p>シナリオ名：<?php echo $record["scenario_name"] ?></p>
         </div>
-      <?php endforeach; ?>
+      <?php $scenario_name_tweet = $record["scenario_name"];
+      endforeach; ?>
     </div>
   <!---------------------------------------------------------------------------------------------------->  
     <?php if(isset($result2[0]["id"])){foreach ($result2 as $record): ?>
@@ -119,14 +134,41 @@ exit();
   <div>
   <form action="./maker_scenario_plus_scene.php" method="POST">
   <input type="hidden" name="scenario_id" value="<?=$_POST["scenario_id"]?>">
-  <button>シーンを作る</button>
+  <button class="skew-button">シーンを作る</button>
   </form>
-  <!--
-  <button onclick="location.href='maker_scenario_plus_item.php'">報酬アイテムを選ぶ</button>
-  -->  
-  </div>
+  <button class="skew-button" onclick="location.href='maker_scenario_plus_item.php'">報酬アイテムを選ぶ</button>
   </div>
 </div>
-<?php include('set.php');?>
+    <!--シェアボタン-->
+    <div class="side_line">
+      <p class="padding_short">このシナリオをみんなと共有しよう</p>
+      <a href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+          class="twitter-share-button"
+          data-text="シナリオ「<?php echo $scenario_name_tweet?>」を遊んでみましょう"
+          data-hashtags="visionstale"
+          data-size="large"
+          data-url="https://bokuwa.sakura.ne.jp/vt_test01/vt_login.php">
+      Tweet</a>
+      <!--Twitter連携-->
+      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+    </div>
+    </div>
+<!---------------------------------------------------------------------------------------------------->
+<!-- 画面右 -->
+<!-- ゲーム内情報、検索機構 -->
+<div class="straight_line sidebar">
+<?php include('set_right.php');?>
+<?php
+//検索システムの適用ページ
+$list_character = 'list_character.php';?>
+<?php include('search.php');?>
+</div>
+
+</div>
+<!---------------------------------------------------------------------------------------------------->
+<!-- top -->
+<?php include('set_top.php');?>
 </body>
+
 </html>

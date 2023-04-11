@@ -36,6 +36,7 @@ if (!$user) {
   $_SESSION['id'] =  $user['id'];
   $_SESSION['is_admin'] = $user['is_admin'];
   $_SESSION['username'] = $user['username'];
+  $_SESSION["user_only"] = 1;
   header("Location:index.php");
   exit();
 }

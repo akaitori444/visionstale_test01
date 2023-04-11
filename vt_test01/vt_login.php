@@ -82,12 +82,12 @@ if(isset($_SESSION['output_message'])){
             </div>
           </div>
           <div>
-            <button>ログイン</button>
+            <button class="skew-button">ログイン</button>
           </div>
           </form>
           <br>  
           <div>
-          <button onclick="location.href='vt_register.php'">新規登録画面へ</button>
+          <button class="skew-button" onclick="location.href='vt_register.php'">新規登録画面へ</button>
           </div>
         </div>
         <br>  

@@ -35,7 +35,7 @@ exit();
   <div  class="straight_line">
     <div>
     <p>ゲームクリア</p>
-    <button class="skew-button" onclick="location.href = 'index.php'"><span>メニューに戻る</span></button>
+    <button class="skew-button" onclick="location.href = 'index.php'">メニューに戻る</button>
     </div>
     <div>
       <?php if(isset($play_character)){ ?>
@@ -44,7 +44,7 @@ exit();
         <p>マイキャラクター:<?php echo $record["character_name"] ?></p>
         <?php endforeach; }else{?>
         <p>自分のキャラクターを選ぼう</p>
-        <button class="skew-button" onclick="location.href = 'list_character.php'"><span>キャラを見る</span></button>
+        <button class="skew-button" onclick="location.href = 'list_character.php'">キャラを見る</button>
         <?php }?>
     </div>
     </div>

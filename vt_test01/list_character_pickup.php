@@ -83,13 +83,27 @@ if($Access_power < $default_search){
   <link rel="stylesheet" type="text/css" href="css/style.css"/>
 </head>
 
-<body>
-<br>
+<body class ="noise">
+<!---------------------------------------------------------------------------------------------------->
+<!-- loading画面 -->
+<div id="js-loader" class="loader"></div>
+<!---------------------------------------------------------------------------------------------------->
+<!-- 画面 -->
+<div class = "top_line">
+<!---------------------------------------------------------------------------------------------------->
+<!-- 画面左 -->
+<!-- メッセージ、PL情報 -->
+<div class="straight_line sidebar">
+<?php include('set_left.php');?>
+</div>
+<!---------------------------------------------------------------------------------------------------->
+<div class = "main-menu">
+<!-- メイン画面 -->
 <br>
 <br>
 <div class="white_frame">
-  <button class="skew-button" onclick="location.href = 'list_character.php'"><span>キャラリストに戻る</span></button>
-  <button class="skew-button" onclick="location.href = 'index.php'"><span>メニューに戻る</span></button>
+  <button class="skew-button" onclick="location.href = 'list_character.php'">キャラリストに戻る</button>
+  <button class="skew-button" onclick="location.href = 'index.php'">メニューに戻る</button>
 </div>
   <div class="white_frame">
   <div  class="straight_line">
@@ -110,7 +124,7 @@ if($Access_power < $default_search){
         <form enctype="multipart/form-data" action="./upload_character_pickup.php" method="POST">
           <p><?php echo $record["character_name"]?>をマイキャラクターに選択中</p>
           <input type="hidden" name="character_choice" value="0">
-          <div><button>登録を解除</button></div>
+          <div><button class="skew-button">登録を解除</button></div>
         </form>
         <?php }else{?>
         <!--登録-->
@@ -118,19 +132,52 @@ if($Access_power < $default_search){
           <input type="hidden" name="pickup_character_id" value="<?=$_POST['pickup_character_id']?>">
           <input type="hidden" name="character_choice" value="1">
           <p>自分のキャラクターを選ぼう</p>
-          <div><button>マイキャラクターに登録する</button></div>
+          <div><button class="skew-button">マイキャラクターに登録</button></div>
         </form>
+        <form enctype="multipart/form-data" action="./maker_character_plus_profile.php" method="POST">
+          <input type="hidden" name="pickup_character_id" value="<?=$_POST['pickup_character_id']?>">
+          <div><button class="skew-button">プロフィールを編集する</button></div>
+        </form>
+        <form enctype="multipart/form-data" action="./maker_character_plus_item.php" method="POST">
+          <input type="hidden" name="pickup_character_id" value="<?=$_POST['pickup_character_id']?>">
+          <div><button class="skew-button">アイテムを持たせる</button></div>
+        </form>
+
       <?php }?>
     </div>    
         <?php endforeach; ?>
     <!--
-    <button onclick="location.href='maker_character_plus_profile.php'">プロフィールを編集する</button>
-    <button onclick="location.href='maker_character_plus_item.php'">アイテムを持たせる</button>
-    <button onclick="location.href='maker_character_plus_tag.php'">タグをつける</button>
-        -->
+    <button class="skew-button" onclick="location.href='maker_character_plus_tag.php'">タグをつける</button>
+    -->
+    <br>
+    <!--シェアボタン-->
+    <div class="side_line">
+      <p class="padding_short">このキャラクターをみんなと共有しよう</p>
+      <a href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+          class="twitter-share-button"
+          data-text="「<?php echo $character_name?>」はVisionsTaleで遊んでいます!"
+          data-hashtags="visionstale"
+          data-size="large"
+          data-url="https://bokuwa.sakura.ne.jp/vt_test01/vt_login.php">
+      Tweet</a>
+      <!--Twitter連携-->
+      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+
+
   </div>
-  </div>
-<?php include('set.php');?>
+</div>
+<!---------------------------------------------------------------------------------------------------->
+<!-- 画面右 -->
+<!-- ゲーム内情報、検索機構 -->
+<div class="straight_line sidebar">
+<?php include('set_right.php');?>
+</div>
+
+</div>
+<!---------------------------------------------------------------------------------------------------->
+<!-- top -->
+<?php include('set_top.php');?>
 </body>
 
 </html>

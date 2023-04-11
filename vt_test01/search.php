@@ -1,6 +1,15 @@
 <!---------------------------------------------------------------------------------------------------->
 <!--検索機構-->
-<div class="search_frame">
+<div class="white_frame_side">
+    <h1>ユーザーデータ絞り込み</h1>
+
+    <p><?php echo $user_only_set?></P>
+    <?php ?>
+    <div>
+    <form action="<?php echo $list_character?>" method="post">
+        <input type="hidden" name="user_only_command" value=<?php echo $user_only_command?>>
+        <button class="skew-button"><?php echo $user_only_set_button?></button>
+    </form>
     <form action="<?php echo $list_character?>" method="post">
     <h1>順番</h1>
     <p>現在の並び:<?php echo $listorder?></P>

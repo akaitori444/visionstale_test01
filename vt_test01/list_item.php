@@ -29,60 +29,93 @@ list($result, $search_term, $listorder ,$pages ,$now) = searchandorder($list_nam
   <link rel="stylesheet" type="text/css" href="css/style.css"/>
 </head>
 
-<body>
-<br>
-<br>
-<br>
-  <div class="white_frame">
-  <button class="skew-button" onclick="location.href = 'maker_item.php'"><span>アイテムを作る</span></button>
-  <button class="skew-button" onclick="location.href = 'index.php'"><span>メニューに戻る</span></button>
-  </div>
-<div class="straight_line">
+<body class ="noise">
 <!---------------------------------------------------------------------------------------------------->
-  <div class="white_frame">
-  <h1>アイテムリスト</h1>
-  <div class="straight_line">
-  <div>
-    <?php foreach ($result as $record): ?>
-    <form class="side_line" action="list_character_pickup.php" method="post">
-      <div>
-        <?php //キャラクター表示
-          echo "<img src='$record[item_image]' alt='logo' alt='$record[item_image]' width='100' height='100'>";
-          echo '<br>';
-          echo '<p>アイテム名：'.$record["item_name"].'</p>';
-          if($record["item_type"] == 1){
-            echo "系統:HP回復<br>使用することでHPを6回復する";
-          }elseif($record["item_type"] == 2){
-            echo "系統:接続率回復<br>使用することで接続率を30回復する";
-          }elseif($record["item_type"] == 3){
-            echo "系統:物理武器<br>使用することで相手HPに4ダメージ";
-          }elseif($record["item_type"] == 4){
-            echo "系統:特殊武器<br>使用することで相手接続率に20ダメージ";
-          };
-          echo '<br>';?>
-      </div>
-    </form>
-    <?php endforeach; ?>
-  </div>
-  </div>
-  <!--ページネーションを表示-->
+<!-- loading画面 -->
+<div id="js-loader" class="loader"></div>
+<!---------------------------------------------------------------------------------------------------->
+<!-- 画面 -->
+<div class = "top_line">
+<!---------------------------------------------------------------------------------------------------->
+<!-- 画面左 -->
+<!-- メッセージ、PL情報 -->
+<div class="straight_line sidebar">
+<?php include('set_left.php');?>
+</div>
+<!---------------------------------------------------------------------------------------------------->
+<div class = "main-menu">
+<!-- メイン画面 -->
+  <!---------------------------------------------------------------------------------------------------->
+  <!-- ページ移行 -->
   <br>
-  <?php for ( $n = 1; $n <= $pages; $n ++){
-          if ( $n == $now ){
-              echo "<span style='padding: 5px;'>$now</span>";
-          }else{
-              echo "<a href='./list_item.php?page_id=$n' style='padding: 5px;'>$n</a>";    
-          }
-      }
-  ?>
+  <br>
+  <div class="white_frame">
+    <button class="skew-button" onclick="location.href = 'maker_item.php'">アイテムを作る</button>
+    <button class="skew-button" onclick="location.href = 'index.php'">メニューに戻る</button>
   </div>
   <!---------------------------------------------------------------------------------------------------->
+  <div class="straight_line">
+  <!---------------------------------------------------------------------------------------------------->
+    <div class="white_frame">
+    <h1>アイテムリスト</h1>
+    <div class="straight_line">
+    <div>
+      <?php foreach ($result as $record): ?>
+      <form class="side_line" action="list_character_pickup.php" method="post">
+        <div class="line_frame">
+          <?php //キャラクター表示
+            echo "<img src='$record[item_image]' alt='logo' alt='$record[item_image]' width='100' height='100'>";
+            echo '<br>';
+            echo '<p>アイテム名：'.$record["item_name"].'</p>';?>
+        </div>
+        <div>
+        <?php
+            if($record["item_type"] == 1){
+              echo "系統:HP回復<br>使用することでHPを6回復する";
+            }elseif($record["item_type"] == 2){
+              echo "系統:接続率回復<br>使用することで接続率を30回復する";
+            }elseif($record["item_type"] == 3){
+              echo "系統:物理武器<br>使用することで相手HPに4ダメージ";
+            }elseif($record["item_type"] == 4){
+              echo "系統:特殊武器<br>使用することで相手接続率に20ダメージ";
+            };
+            echo '<br>';?>
+        </div>
+      </form>
+      <?php endforeach; ?>
+    </div>
+    </div>
+    <!--ページネーションを表示-->
+    <br>
+    <?php for ( $n = 1; $n <= $pages; $n ++){
+            if ( $n == $now ){
+                echo "<span style='padding: 5px;'>$now";
+            }else{
+                echo "<a href='./list_item.php?page_id=$n' style='padding: 5px;'>$n</a>";    
+            }
+        }
+    ?>
+    </div>
+        
+    <!---------------------------------------------------------------------------------------------------->
+    
+  </div>
 </div>
-<?php include('set.php');?>
+<!---------------------------------------------------------------------------------------------------->
+<!-- 画面右 -->
+<!-- ゲーム内情報、検索機構 -->
+<div class="straight_line sidebar">
+<?php include('set_right.php');?>
 <?php
 //検索システムの適用ページ
-$list_character = 'list_item.php';?>
+$list_character = 'list_character.php';?>
 <?php include('search.php');?>
+</div>
+<!---------------------------------------------------------------------------------------------------->
+</div>
+<!---------------------------------------------------------------------------------------------------->
+<!-- top -->
+<?php include('set_top.php');?>
 </body>
 
 </html>

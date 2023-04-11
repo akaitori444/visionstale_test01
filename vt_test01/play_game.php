@@ -1,7 +1,6 @@
 <?php include('login_set.php'); 
 /*セッション開始、ログインチェック、function読み込み、DBチェック、セッション定義*/ ?>
 <?php
-
 /*---------------------------------------------------------------------------*/
 /*//確認用
 echo('<pre>');
@@ -354,15 +353,24 @@ else{
   <link rel="icon" href="assets/favicon.ico.png">
   <!--jQuery-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <!--CSS-->
+  <!--Javascript-->
+  <script src='js/main.js'></script>
   <!--リセットCSS-->
   <link rel="stylesheet" type="text/css" href="css/reset.css"/>
+  <!--CSS-->
   <link rel="stylesheet" type="text/css" href="css/style.css"/>
 </head>
 
-<body>
-
-<div class="side_line">
+<body class ="noise">
+<!---------------------------------------------------------------------------------------------------->
+<!-- loading画面 -->
+<div id="js-loader" class="loader"></div>
+<!---------------------------------------------------------------------------------------------------->
+<div class="top_line">
+<div>
+<!--ステータス一覧-->
+<div class="target">
+  <!--ここに記入する-->
     <!--ステータス一覧-->
     <div class="pl_information">
       <!--NPCステータス-->
@@ -400,7 +408,6 @@ else{
           -->
       </div>
       <!--ステータス-->
-      
       <h1>PLステータス</h1>
       <div class="status">
         <p>キャラクター名: <?=$pl_name?></p>
@@ -434,62 +441,64 @@ else{
           -->
           </div>
   </div>
-    <!--戦闘画面-->
-    <div class="straight_line">
-      <img class="example16" src="<?=$scene_image_now?>" alt="enemyサンプル" width="960" height="540" >
-      <div class="msg_window">
-        <div>メッセージ</div>
-        <div><?=$msg?></div>
-        <div><?=$msg1?></div>
-        <div><?=$msg2?></div>        
-        </div>
-    </div>    
-    <!--コマンド選択バー-->
-      <div class="pl_information">
-      <form enctype="multipart/form-data" action="./play_game.php" method="POST">
-            <legend>コマンド入力</legend>
-            <div class="side_line">
-            <!--隠しデータ-->            
-              <!--PL隠しデータ-->
-              <input type="hidden" name="pl_hp" value="<?=$pl_hp_set?>">
-              <input type="hidden" name="pl_Access" value="<?=$pl_Access?>">
-              <!--NPC隠しデータ-->
-              <input type="hidden" name="npc_hp" value="<?=$npc_hp_set?>">
-              <input type="hidden" name="npc_Access" value="<?=$npc_Access?>">
-              <!--ゲーム進行度隠しデータ-->
-              <input type="hidden" name="now_page" value="<?=$now_page?>">
-            </div>
-            <div class="straight_line">
-              <!--選択-->
-              <?php if($scene_event_type == 2){ ?>
-              <button name="battle_command" value="0" class="skew-button" onclick="location.href = 'index.php'"><span>次のシーンへ</span></button>
-              <?php }else{ ?>
-              <?php if($endflag == 2){ ?>
-              <button name="battle_command" value="2" class="skew-button" onclick="location.href = 'index.php'"><span>近接攻撃</span></button>
-              <button name="battle_command" value="3" class="skew-button" onclick="location.href = 'index.php'"><span>スキル攻撃</span></button>
-              <button name="battle_command" value="4" class="skew-button" onclick="location.href = 'index.php'"><span>調査</span></button>
-              <button name="battle_command" value="5" class="skew-button" onclick="location.href = 'index.php'"><span>待機</span></button>
-              <!--
-              <p>アイテム残数 : <?=$heel_item?></p>
-              <?php if($heel_item != 0){ ?>
-              <button name="battle_command" value="5">回復する</button>
-              <?php } ?>
-              -->
-              <?php }elseif($endflag == 1){?>
-              <button name="battle_command" value="9" class="skew-button" onclick="location.href = 'index.php'"><span>次のシーンへ</span></button>
-              <?php }} ?>
-            </div>
-        </form>
-        <button class="skew-button" onclick="location.href = 'index.php'"><span>ゲームをやめる</span></button>
-      </div>
+  </div>
+<button class="skew-button" class="button">ステータス</button>
 </div>
-
-
-
-<img class="npc_position" src="<?=$npc_images?>" alt="npcサンプル" width="500" height="500">
-
-<img class="pl_position" src="<?=$pl_images_set?>" alt="PLサンプル" width="500" height="500">
-
+<!--戦闘画面-->
+<div class="straight_line">
+  <div class="top_line">
+  <img src="<?=$npc_images?>" alt="npcサンプル" width="500" height="500">
+  <img src="<?=$pl_images_set?>" alt="PLサンプル" width="500" height="500">
+  </div>
+  <!--
+  <img class="example16" src="<?=$scene_image_now?>" alt="enemyサンプル" width="960" height="540" >
+  -->
+  <div class="msg_window">
+    <div>メッセージ</div>
+    <div><?=$msg?></div>
+    <div><?=$msg1?></div>
+    <div><?=$msg2?></div>        
+    </div>
+</div>    
+<!--コマンド選択バー-->
+<div class="pl_information">
+<form enctype="multipart/form-data" action="./play_game.php" method="POST">
+      <legend>コマンド入力</legend>
+      <div class="side_line">
+      <!--隠しデータ-->            
+        <!--PL隠しデータ-->
+        <input type="hidden" name="pl_hp" value="<?=$pl_hp_set?>">
+        <input type="hidden" name="pl_Access" value="<?=$pl_Access?>">
+        <!--NPC隠しデータ-->
+        <input type="hidden" name="npc_hp" value="<?=$npc_hp_set?>">
+        <input type="hidden" name="npc_Access" value="<?=$npc_Access?>">
+        <!--ゲーム進行度隠しデータ-->
+        <input type="hidden" name="now_page" value="<?=$now_page?>">
+      </div>
+      <div class="straight_line">
+        <!--選択-->
+        <?php if($scene_event_type == 2){ ?>
+        <button name="battle_command" value="0" class="skew-button" onclick="location.href = 'index.php'">次のシーンへ</button>
+        <?php }else{ ?>
+        <?php if($endflag == 2){ ?>
+        <button name="battle_command" value="2" class="skew-button" onclick="location.href = 'index.php'">近接攻撃</button>
+        <button name="battle_command" value="3" class="skew-button" onclick="location.href = 'index.php'">スキル攻撃</button>
+        <button name="battle_command" value="4" class="skew-button" onclick="location.href = 'index.php'">調査</button>
+        <button name="battle_command" value="5" class="skew-button" onclick="location.href = 'index.php'">待機</button>
+        <!--
+        <p>アイテム残数 : <?=$heel_item?></p>
+        <?php if($heel_item != 0){ ?>
+        <button name="battle_command" value="5">回復する</button>
+        <?php } ?>
+        -->
+        <?php }elseif($endflag == 1){?>
+        <button name="battle_command" value="9" class="skew-button" onclick="location.href = 'index.php'">次のシーンへ</button>
+        <?php }} ?>
+      </div>
+  </form>
+  <button class="skew-button" onclick="location.href = 'index.php'">ゲームをやめる</button>
+</div>
+</div>
 </body>
 
 </html>

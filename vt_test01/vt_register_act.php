@@ -64,4 +64,4 @@ try {
 
 //header("Location:vt_login.php");
 ?>
-<button onclick="location.href='vt_register.php'">新規登録画面へ</button>
+<button onclick="location.href='vt_login.php'">新規登録画面へ</button>

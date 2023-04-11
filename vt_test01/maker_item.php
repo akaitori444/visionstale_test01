@@ -19,13 +19,27 @@
   <link rel="stylesheet" type="text/css" href="css/style.css"/>
 </head>
 
-<body>
-<br>
+<body class ="noise">
+<!---------------------------------------------------------------------------------------------------->
+<!-- loading画面 -->
+<div id="js-loader" class="loader"></div>
+<!---------------------------------------------------------------------------------------------------->
+<!-- 画面 -->
+<div class = "top_line">
+<!---------------------------------------------------------------------------------------------------->
+<!-- 画面左 -->
+<!-- メッセージ、PL情報 -->
+<div class="straight_line sidebar">
+<?php include('set_left.php');?>
+</div>
+<!---------------------------------------------------------------------------------------------------->
+<div class = "main-menu">
+<!-- メイン画面 -->
 <br>
 <br>
 <div class="white_frame">
-  <button class="skew-button" onclick="location.href = 'list_item.php'"><span>アイテムを見る</span></button>
-  <button class="skew-button" onclick="location.href = 'index.php'"><span>メニューに戻る</span></button>
+  <button class="skew-button" onclick="location.href = 'list_item.php'">アイテムを見る</button>
+  <button class="skew-button" onclick="location.href = 'index.php'">メニューに戻る</button>
 </div>
 
   <div class="white_frame">
@@ -71,15 +85,30 @@
         </select>
       </div>
   <!-------------------------------------------------------------------------------------------------------------------------------->
-        <div>
-          <input type="reset" value="リセットする">
-          <button>作成</button>
-        </div>
+      <div> 
+        <button class="skew-button">作成</button>
+      </div>
 
     </form>
   </dvi>
+  </div>
+  </div>
+<!---------------------------------------------------------------------------------------------------->
+<!-- 画面右 -->
+<!-- ゲーム内情報、検索機構 -->
+<div class="straight_line sidebar">
+<?php include('set_right.php');?>
+<?php
+//検索システムの適用ページ
+$list_character = 'list_character.php';?>
+<?php include('search.php');?>
 </div>
-<?php include('set.php');?>
+
+</div>
+<!---------------------------------------------------------------------------------------------------->
+<!-- top -->
+<?php include('set_top.php');?>
 </body>
+
 </html>
 

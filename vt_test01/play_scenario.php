@@ -29,12 +29,27 @@ list($result, $search_term, $listorder ,$pages ,$now) = searchandorder($list_nam
   <link rel="stylesheet" type="text/css" href="css/style.css"/>
 </head>
 
-<body>
-<div class="straight_line">
+<body class ="noise">
 <!---------------------------------------------------------------------------------------------------->
+<!-- loading画面 -->
+<div id="js-loader" class="loader"></div>
+<!---------------------------------------------------------------------------------------------------->
+<!-- 画面 -->
+<div class = "top_line">
+<!---------------------------------------------------------------------------------------------------->
+<!-- 画面左 -->
+<!-- メッセージ、PL情報 -->
+<div class="straight_line sidebar">
+<?php include('set_left.php');?>
+</div>
+<!---------------------------------------------------------------------------------------------------->
+<div class = "main-menu">
+<!-- メイン画面 -->
+<br>
+<br>
   <div class="white_frame">
-    <button onclick="location.href='list_scenario.php'">シナリオを見る</button>
-    <button onclick="location.href='index.php'">メニューに戻る</button>
+    <button class="skew-button" onclick="location.href='list_scenario.php'">シナリオを見る</button>
+    <button class="skew-button" onclick="location.href='index.php'">メニューに戻る</button>
   </div>
 <!---------------------------------------------------------------------------------------------------->
   <div class="white_frame">
@@ -50,7 +65,7 @@ list($result, $search_term, $listorder ,$pages ,$now) = searchandorder($list_nam
   <!---------------------------------------------------------------------------------------------------->
   <div class="white_frame">
     <h1>シナリオリスト</h1>
-    <div class="space-evenly">
+    <div class="straight_line space-evenly">
       <?php foreach ($result as $record): ?>
       <form class="side_line" action="play_game_start.php" method="post">
         <div class='padding_50'>
@@ -64,7 +79,7 @@ list($result, $search_term, $listorder ,$pages ,$now) = searchandorder($list_nam
           <input type="hidden" name="scenario_id" value="<?= $record["scenario_id"]?>">
         </div>
         <div>
-          <button class="skew-button" onclick="location.href = 'index.php'"><span>このシナリオを遊ぶ</span></button>
+          <button class="skew-button" onclick="location.href = 'index.php'">このシナリオを遊ぶ</button>
         </div>
       </form>
       <?php endforeach; ?>
@@ -74,7 +89,7 @@ list($result, $search_term, $listorder ,$pages ,$now) = searchandorder($list_nam
     <br>
     <?php for ( $n = 1; $n <= $pages; $n ++){
             if ( $n == $now ){
-                echo "<span style='padding: 5px;'>$now</span>";
+                echo "<span style='padding: 5px;'>$now";
             }else{
                 echo "<a href='./list_scenario.php?page_id=$n' style='padding: 5px;'>$n</a>";    
             }
@@ -83,10 +98,20 @@ list($result, $search_term, $listorder ,$pages ,$now) = searchandorder($list_nam
   </div>
 </div>
 <!---------------------------------------------------------------------------------------------------->
-<?php include('set.php');?>
+<!-- 画面右 -->
+<!-- ゲーム内情報、検索機構 -->
+<div class="straight_line sidebar">
+<?php include('set_right.php');?>
 <?php
 //検索システムの適用ページ
-$list_character = 'play_scenario.php';?>
+$list_character = 'list_character.php';?>
 <?php include('search.php');?>
+</div>
+
+</div>
+<!---------------------------------------------------------------------------------------------------->
+<!-- top -->
+<?php include('set_top.php');?>
 </body>
+
 </html>

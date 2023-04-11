@@ -113,8 +113,8 @@ if(count($err_msgs) === 0){//エラーチェック
     try {
 
         //1.character_game_data
-        $stmt1 = $pdo->prepare('INSERT INTO character_game_data (character_id, character_name, save_path, battle_style) VALUES (?, ?, ?, ?)');
-        $stmt1->execute([$character_id, $name, $save_path, $battle_style]);
+        $stmt1 = $pdo->prepare('INSERT INTO character_game_data (creater_id, character_id, character_name, save_path, battle_style) VALUES (?, ?, ?, ?, ?)');
+        $stmt1->execute([$user_id, $character_id, $name, $save_path, $battle_style]);
         
         //2.character_spec_set
         $stmt2 = $pdo->prepare('INSERT INTO character_spec_set (character_spec_id, attack, toughness, speed, technic, imagination, chase) VALUES (?, ?, ?, ?, ?, ?, ?)');
@@ -126,10 +126,14 @@ if(count($err_msgs) === 0){//エラーチェック
         
         // トランザクションをコミットする
         $pdo->commit();
-
-        $alert = "<script type='text/javascript'>alert('データを送信しました。');</script>";
-        echo $alert;
+    /*---------------------------------------------------------------------------*/
+        //$alert = "<script type='text/javascript'>alert('データを送信しました。');</script>";
+        //echo $alert;
         //echo 'データを送信しました。';
+        $_SESSION['output_message_type'] == 2;//成功メッセージ
+        $_SESSION['output_message'] = "'$name'のキャラクターデータを作成しました";
+    /*---------------------------------------------------------------------------*/
+
         
     } catch (PDOException $e) {
         // トランザクションをロールバックする
@@ -140,9 +144,8 @@ if(count($err_msgs) === 0){//エラーチェック
     /*---------------------------------------------------------------------------*/
 } else {
     foreach($err_msgs as $masg){
-        $alert = "<script type='text/javascript'>alert('". $masg. "');</script>";
-        echo $alert;
-        echo '<br>';
+        $_SESSION['output_message_type'] == 1;//エラーメッセージ
+        $_SESSION['output_message'] = json_encode(["db error" => "{$e->getMessage()}"]);
     }
 }
 

@@ -80,13 +80,27 @@ exit();
   <link rel="stylesheet" type="text/css" href="css/style.css"/>
 </head>
 
-<body>
-<br>
+<body class ="noise">
+<!---------------------------------------------------------------------------------------------------->
+<!-- loading画面 -->
+<div id="js-loader" class="loader"></div>
+<!---------------------------------------------------------------------------------------------------->
+<!-- 画面 -->
+<div class = "top_line">
+<!---------------------------------------------------------------------------------------------------->
+<!-- 画面左 -->
+<!-- メッセージ、PL情報 -->
+<div class="straight_line sidebar">
+<?php include('set_left.php');?>
+</div>
+<!---------------------------------------------------------------------------------------------------->
+<div class = "main-menu">
+<!-- メイン画面 -->
 <br>
 <br>
 <div class="white_frame">
-  <button class="skew-button" onclick="location.href = 'list_scenario.php'"><span>シナリオを見る</span></button>
-  <button class="skew-button" onclick="location.href = 'index.php'"><span>メニューに戻る</span></button>
+  <button class="skew-button" onclick="location.href = 'list_scenario.php'">シナリオを見る</button>
+  <button class="skew-button" onclick="location.href = 'index.php'">メニューに戻る</button>
 </div>
 <!---------------------------------------------------------------------------------------------------->
 <div class="white_frame">
@@ -152,6 +166,7 @@ exit();
               <option value="3">探索(探索を行う、ゲームの導入と戦闘の間に行ってキャラクターを育てよう)</option>
             </select>
           </div>
+          <input type="hidden" name="scenario_id" value="<?= $scenario_id?>">
           <div><input type="reset" value="リセットする"></div>
     <!---------------------------------------------------------------------------------------------------->
     <div>
@@ -159,19 +174,14 @@ exit();
       <div  class="side_line">
         <div>
           <?php //キャラクター表示
-            /*echo "<img src='$record[save_path]' alt='logo' alt='$record[save_path]' width='100' height='100'>";
-            echo '<br>';*/
+            echo "<img src='$record[save_path]' alt='logo' alt='$record[save_path]' width='100' height='100'>";
+            echo '<br>';
             echo '<p>キャラクター名：'.$record["character_name"].'</p>';
             /*echo '<p>制作者：'.$record["character_name"].'</p>';*/
-            echo '<br>';
             $pickup_character_id =$record["character_id"]
             ;?>
-          <input type="hidden" name="$scenario_id" value="<?=$scenario_id?>">
-          <input type="hidden" name="pickup_character_id" value="<?=$pickup_character_id?>">
-          <input type="hidden" name="scenario_id" value="<?= $scenario_id?>">
-          <div><button>このキャラクターにする</button></div>
         </div>
-        
+        <input type="radio" name="pickup_character_id" value="<?=$pickup_character_id?>">
       </div>
       <?php endforeach; ?>
     </div>
@@ -181,7 +191,7 @@ exit();
     <div  class="side_line">
     <?php for ( $n = 1; $n <= $pages; $n ++){
             if ( $n == $now ){
-                echo "<span style='padding: 5px;'>$now</span>";
+                echo "<span style='padding: 5px;'>$now";
             }else{
                 echo "<a href='./maker_scenario_plus_scene.php?page_id=$n' style='padding: 5px;'>$n</a>";    
             }
@@ -189,15 +199,27 @@ exit();
     ?>
     </div>
     <!---------------------------------------------------------------------------------------------------->
-    </form>
+    <div><button class="skew-button">このキャラクターにする</button></div>
+  </form>
   </div>
 </dvi>
 </div>
-<?php include('set.php');?>
+</div>
+<!---------------------------------------------------------------------------------------------------->
+<!-- 画面右 -->
+<!-- ゲーム内情報、検索機構 -->
+<div class="straight_line sidebar">
+<?php include('set_right.php');?>
 <?php
 //検索システムの適用ページ
-$list_character = 'maker_scenario_plus_scene.php';?>
+$list_character = 'list_character.php';?>
 <?php include('search.php');?>
+</div>
+
+</div>
+<!---------------------------------------------------------------------------------------------------->
+<!-- top -->
+<?php include('set_top.php');?>
 </body>
 
 </html>

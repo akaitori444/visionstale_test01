@@ -1,5 +1,6 @@
 @charset "utf-8";
-
+/*---------------------------------------------------------------------------*/
+/* 共有 */
 body{
     background: url("../asset/gif/noise.gif");
 	font-family: "Roboto", "Yu Gothic Medium", "游ゴシック Medium", "YuGothic", "游ゴシック体", "ヒラギノ角ゴ Pro W3", "メイリオ", sans-serif;
@@ -9,7 +10,7 @@ body{
 }
 
 /*　パディングをサイズ内側にする処理　*/
-/** {
+* {
 	padding:0;
 	margin:0;
 	-webkit-box-sizing: border-box;
@@ -17,16 +18,39 @@ body{
 	-o-box-sizing: border-box;
 	-ms-box-sizing: border-box;
 	box-sizing: border-box;
-}*/
+}
+
 textarea {
   resize: none;
-  width:600px;
-  height:100px;
+  width:400px;
+  height:50px;
 }
 img{
     pointer-events: none;
 }
-
+/*---------------------------------------------------------------------------*/
+/* スマートフォン用のスタイル */
+@media screen and (max-width: 767px) {
+  /* サイドバーを非表示 */
+  .sidebar {
+    display: none;
+  }
+}
+/* デスクトップ用のスタイル */
+@media screen and (min-width: 768px) {
+  /* メインメニューの横幅を調整 */
+  .main-menu {
+    width: 70%;
+    float: left;
+  }
+  
+  /* サイドバーの横幅を調整 */
+  .sidebar {
+    width: 30%;
+    float: right;
+  }
+}
+/*---------------------------------------------------------------------------*/
 /*-----------------*/
 section{
     border: 4px double #110000;
@@ -67,13 +91,27 @@ label {
 .menu{
 	justify-content: space-evenly;
 	border: 0.2px solid;
-	height: 100px;
+	height: 70px;
 	width: 100%; /* 幅いっぱいを指定 */
   background: #efefef; /* 背景色にグレーを指定 */
-  padding: 20px 50px; /* ヘッダーに上下左右それぞれ余白を指定 */
+  padding: 10px 40px; /* ヘッダーに上下左右それぞれ余白を指定 */
   box-sizing: border-box; /* padding分を含んで幅を100%にするため */
   position: fixed; /* ウィンドウを基準に画面に固定 */
   top: 0; /* 上下の固定位置を上から0pxにする */
+  left: 0; /* 左右の固定位置を左から0pxにする */
+  display: flex; /* 中の要素を横並びにする */
+  align-items: center; /* 中の要素を上下中央に並べる */
+}
+.footer{
+	justify-content: space-evenly;
+	border: 0.2px solid;
+	height: 70px;
+	width: 100%; /* 幅いっぱいを指定 */
+  background: #efefef; /* 背景色にグレーを指定 */
+  padding: 10px 40px; /* ヘッダーに上下左右それぞれ余白を指定 */
+  box-sizing: border-box; /* padding分を含んで幅を100%にするため */
+  position: fixed; /* ウィンドウを基準に画面に固定 */
+  bottom: 0; /* 上下の固定位置を上から0pxにする */
   left: 0; /* 左右の固定位置を左から0pxにする */
   display: flex; /* 中の要素を横並びにする */
   align-items: center; /* 中の要素を上下中央に並べる */
@@ -113,6 +151,23 @@ label {
   background-color: #fff; /* 背景色 */
   box-shadow: 1px 1px 2px #ccc;
 }
+/*---------------------------------------------------------------------------*/
+/*----------------- 表示/非表示 -----------------*/
+.target {
+  background-color: #ea3345;
+  padding: 10px;
+  transition: opacity 300ms;
+}
+.target.is-hidden {
+  opacity: 0;
+}
+.text {
+  color: white;
+}
+p {
+  margin: 0;
+}
+/*---------------------------------------------------------------------------*/
 /*----------------- padding -----------------*/
 .padding_short{
   padding: 10px; /* ヘッダーに上下左右それぞれ余白を指定 */
@@ -147,17 +202,32 @@ label {
   margin: 0;
 }
 /*----------------- frame -----------------*/
-
 .white_frame{
   margin: 2em auto;
   padding: 1em;
-  width: 50%;
+  width: 750px;
   border: 1px solid #ccc; /* 枠線 */
   background-color: #fff; /* 背景色 */
   box-shadow: 1px 1px 2px #ccc;
 }
-
-/*-----------------------*/
+.white_frame_side{
+  margin: 2em auto;
+  padding: 1em;
+  width: 300px;
+  border: 1px solid #ccc; /* 枠線 */
+  background-color: #fff; /* 背景色 */
+  box-shadow: 1px 1px 2px #ccc;
+}
+.line_frame{
+  margin: 1em;
+  padding: 1em;
+  width: 50%;
+  border-radius: 8px;
+  border: 1px solid #000000; /* 枠線 */
+  background-color: #fff; /* 背景色 */
+}
+/*---------------------------------------------------------------------------*/
+/*----------------- flex -----------------*/
 /*--縦揃え--*/
 .straight_line{
     display: flex;
@@ -167,9 +237,13 @@ label {
 }
 /*--横揃え--*/
 .side_line{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/*--上横揃え--*/
+.top_line{
+  display: flex;
 }
 
 .space-evenly {
@@ -193,7 +267,6 @@ label {
 .slider .slick-slide {
     margin:0 5px;/*スライド左右の余白調整*/
 }
-
 /*---ゲーム画面---*/
 .top{
     width: 100%;
@@ -205,7 +278,6 @@ label {
     display: flex;
     justify-content: center;
 }
-
 .window{
     display: flex;    
 }
@@ -237,7 +309,6 @@ label {
     background-position:bottom;
     background-color: yellow;
 }
-
 .battlefield{
     width: 600px;
     height: 600px;
@@ -246,7 +317,6 @@ label {
     justify-content: center;
     align-items: center;
 }
-
 .npc_position{
   position: absolute;
   top: 10rem;
@@ -263,16 +333,15 @@ label {
   top: 5rem;
 }
 /*----------------- ボタン -----------------*/
-/*
 button{
     all: unset;
-    width: 100%;
     background: red;
     border-radius: 8px;
     color: white;
     text-align: center;
     margin-top: 16px;
     cursor: pointer;
+    transform: skewX(-10deg) scaleX(0);
     box-shadow: 0 4px #7a0000;
 }
 button:hover{
@@ -282,6 +351,20 @@ button:active{
     box-shadow: 0 1px #7a0000;
     transform:translateY(3px)
 }
+.input-button{
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  padding: 0;
+  background-color: #c99090;
+  border: none;
+  font: 1.3rem "Anton", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #000000;
+  border-radius: 8px;
+
+}
 /*----------------- button -----------------*/
 @import 'https://fonts.googleapis.com/css?family=Anton';
 * {
@@ -289,6 +372,7 @@ button:active{
 }
 .skew-button {
   cursor: pointer;
+  width: 14rem;
   outline: none;
   transform: translate3d(0, 0, 0) skew(-10deg);
   -webkit-backface-visibility: hidden;
@@ -298,11 +382,13 @@ button:active{
   padding: 0;
   background-color: #c99090;
   border: none;
-  font: 1.3rem "Anton", sans-serif;
+  font: 1.1rem "Anton", sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: #000000;
+  border-radius: 8px;
 }
+/*
 .skew-button span {
   transform: translate3d(0, 0, 0);
   -webkit-backface-visibility: hidden;
@@ -313,65 +399,77 @@ button:active{
   height: 100%;
   padding: 20px 50px;
   z-index: 3;
-}
+}*/
+/*
 .skew-button:before,
 .skew-button span:before {
   content: "";
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%) skewX(-20deg);
+  transform: translate(-50%, -50%) skewX(-10deg);
   width: 100%;
   height: 50px;
   border: 1px solid #760e0e;
   z-index: 2;
-}
+}*/
+/*
 .skew-button span:before {
   display: block;
-  transform: translate(-50%, -50%) skew(-20deg);
+  transform: translate(-50%, -50%) skew(-10deg);
   transform-origin: center center;
   z-indeX: -1;
-}
+}*/
+
 .skew-button:after {
   transition: all 100ms ease-out;
   content: "";
   position: absolute;
   left: 0;
   top: 0;
-  transform: skewX(-20deg) scaleX(0);
+  transform: skewX(-10deg) scaleX(0);
   width: 100%;
   height: 100%;
   background-color: #760e0e;
   border: 1px solid transparent;
   z-index: 1;
+  border-radius: 8px;
 }
+/*
 .skew-button:hover span:before {
   -webkit-animation: fill 0.5s ease-out;
           animation: fill 0.5s ease-out;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
 }
+*/
 .skew-button:hover:after {
+  border-radius: 8px;
   -webkit-animation: swoosh 0.7s ease-in;
           animation: swoosh 0.7s ease-in;
 }
 .skew-button:active:before {
+  border-radius: 8px;
   background-color: #1b0303;
 }
 
 @-webkit-keyframes swoosh {
   0% {
+    border-radius: 8px;
     transform-origin: left center;
   }
   20% {
-    transform: skewX(-20deg) scaleX(1);
+    border-radius: 8px;
+    transform: skewX(-10deg) scaleX(1);
     transform-origin: left center;
   }
   21% {
+    border-radius: 8px;
     transform-origin: right center;
   }
   50% {
-    transform: skewX(-20deg) scaleX(0);
+    border-radius: 8px;
+    transform: skewX(-10deg) scaleX(0);
     transform-origin: right center;
   }
 }
@@ -381,14 +479,14 @@ button:active{
     transform-origin: left center;
   }
   20% {
-    transform: skewX(-20deg) scaleX(1);
+    transform: skewX(-10deg) scaleX(1);
     transform-origin: left center;
   }
   21% {
     transform-origin: right center;
   }
   50% {
-    transform: skewX(-20deg) scaleX(0);
+    transform: skewX(-10deg) scaleX(0);
     transform-origin: right center;
   }
 }
@@ -409,16 +507,61 @@ button:active{
 }
 @keyframes fill {
   0% {
+    border-radius: 8px;
     background-color: rgba(118, 14, 14, 0);
   }
   20% {
+    border-radius: 8px;
     opacity: 0.5;
     border-width: 15px;
     border-color: #480909;
   }
   100% {
+    border-radius: 8px;
     opacity: 0.5;
     border-width: 1px;
     background-color: rgba(118, 14, 14, 0.5);
+  }
+}
+/*----------------- loader -----------------*/
+.loader {
+  align-items: center;
+  background: #fff;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 999;
+}
+.loader::after {
+  -webkit-animation: loader 0.5s linear infinite;
+          animation: loader 0.5s linear infinite;
+  border: 1px solid orange;
+  border-radius: 50%;
+  border-right: 1px solid rgba(255, 165, 0, 0.2);
+  border-top: 1px solid rgba(255, 165, 0, 0.2);
+  content: "";
+  height: 70px;
+  width: 70px;
+}
+
+@-webkit-keyframes loader {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loader {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }

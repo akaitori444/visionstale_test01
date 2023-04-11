@@ -11,8 +11,21 @@
  * @return 指定のデータベースへ接続
  */
 /*-------------------------------------------------------------------------------*/
-//serverDB接続用
 function connect_vt_db()
+{
+  $dbn = 'mysql:dbname=game_visions;charset=utf8mb4;port=3306;host=localhost';
+  $user = 'root';
+  $pwd = '';
+  
+  try {
+    return new PDO($dbn, $user, $pwd);
+  } catch (PDOException $e) {
+    echo json_encode(["db error" => "{$e->getMessage()}"]);
+    exit();
+  }
+}
+//serverDB接続用
+/*function connect_vt_db_server()
 {
   $host = "mysql57.bokuwa.sakura.ne.jp";
   $dbName = "bokuwa_game_visions";
@@ -26,6 +39,7 @@ function connect_vt_db()
     echo json_encode(["db error" => "{$e->getMessage()}"]);
     exit();
   }
+}
 }
 /*-------------------------------------------------------------------------------*/
 /**
@@ -171,28 +185,47 @@ function searchandorder($list_name, $search_id, $search_name){
       $listorder = 'ランダム表示';    
     }
   }
+/*---------------------------------------------------------------------------*/
+  //save_pathの入力有無を確認
+  $user_id = $_SESSION["id"];
+  if($_SESSION["user_only"] == 1){
+    $user_only = " AND creater_id = '$user_id'";
+  }elseif($_SESSION["user_only"] == 0){
+    $user_only = '';
+  }
+/*---------------------------------------------------------------------------*/
   //save_pathの入力有無を確認
   if(@$_POST["search_term"] != ""){ 
     unset($_SESSION["search_term"]);
     $search_term = $_POST["search_term"];
-    $db_search = " WHERE $search_name like '$search_term'"; //SQL文を実行して、結果を$stmtに代入する。
+    $db_search = " WHERE $search_name like '%$search_term%'".$user_only; //SQL文を実行して、結果を$stmtに代入する。
     $_SESSION["search_term"] = $_POST["search_term"];
   }else{
     if(@$_POST["search_out"] = true){ 
       unset($_SESSION["search_term"]);
-      $search_term = '';
-      $db_search = '';
-    }else{
+      if($_SESSION["user_only"] == 1){
+        $search_term = '';
+        $db_search = " WHERE creater_id = '$user_id'"; //SQL文を実行して、結果を$stmtに代入する。
+      }elseif($_SESSION["user_only"] == 0){
+        $search_term = '';
+        $db_search = '';      
+      }
+      }else{
       if(@$_POST["search_out"] = false || @$_SESSION["search_term"] != ""){ 
         $search_term = $_SESSION["search_term"];
-        $db_search = " WHERE $search_name like '$search_term'"; //SQL文を実行して、結果を$stmtに代入する。
+        $db_search = " WHERE $search_name like '%$search_term%'".$user_only; //SQL文を実行して、結果を$stmtに代入する。
       }else{
-      $search_term = '';
-      $db_search = '';
+        if($_SESSION["user_only"] == 1){
+          $search_term = '';
+          $db_search = " WHERE creater_id = '$user_id'"; //SQL文を実行して、結果を$stmtに代入する。
+        }elseif($_SESSION["user_only"] == 0){
+          $search_term = '';
+          $db_search = '';      
+        }
       }
-
     }
-  }
+    }
+/*---------------------------------------------------------------------------*/
   //DB接続
   $pdo = connect_vt_db();
   //1ページに表示する記事の数をmax_viewに定数として定義
@@ -213,6 +246,7 @@ function searchandorder($list_name, $search_id, $search_name){
     $now = $_GET['page_id'];
   }
   $sql = $sql_base.$db_search.$db_order.$db_limit;
+  $sql_check = $sql;
   //表示する記事を取得するSQLを準備
   $stmt = $pdo->prepare($sql);  
   if ($now == 1){
@@ -232,7 +266,7 @@ function searchandorder($list_name, $search_id, $search_name){
   }
   // SQL作成&実行
   $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-  return array($result, $search_term, $listorder ,$pages ,$now);
+  return array($result, $search_term, $listorder ,$pages ,$now, $sql_check);
 }
 /*-------------------------------------------------------------------------------*/
 /**
